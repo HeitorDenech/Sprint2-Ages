@@ -1,0 +1,95 @@
+@media screen and (max-width: 390px){
+    *{
+        margin: 0;
+        padding: 0;
+        font: 1em sans-serif;
+    }
+
+    .button-input{
+        height: 80px;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button-input button{
+        height: 34px;
+        width: 341px;
+        border-radius: 20px;
+        background-color: transparent;
+        border: 1px solid black;
+        display: flex;
+        align-items: start;
+    }
+
+    .button-input button:hover{
+        cursor: pointer;
+    }
+
+    .bi-search{
+        margin-top: 2px;
+        margin-left: 10px;
+        font-size: 20px;
+    }
+
+    /* ----------temperatura---------------- */
+
+    .temperatura{
+        margin-top: 50px;
+        height: 150px;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        margin-left: 30px;
+    }
+
+    .temperatura h1{
+        font-size: 70px;
+        font-weight: normal;
+    }
+
+    .temperatura p{
+        font-size: 14px;
+        filter: opacity(80%);
+    }
+
+    /* ----------containers----------- */
+
+    .containers{
+        margin-top: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-principal{
+        height: 200px;
+        width: 78vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .container{
+        height: 90px;
+        width: 17vw;
+        border-radius: 20px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        background-color: #484D50;
+        color: white;
+    }
+
+    .container p{
+        font-size: 10px;
+    }
+
+}
