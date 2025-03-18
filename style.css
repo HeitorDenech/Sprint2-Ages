@@ -65,6 +65,10 @@
         align-items: center;
     }
 
+    body {
+        background: url('Sprint2-Ages/C:\Users\analu\OneDrive\Área de Trabalho\Sprint2-Ages\sol_com_nuvens.png.png');
+        background-size: cover;
+    }
     .container-principal{
         height: 200px;
         width: 78vw;
