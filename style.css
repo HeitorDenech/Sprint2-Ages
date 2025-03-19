@@ -18,9 +18,10 @@
         width: 341px;
         border-radius: 20px;
         background-color: transparent;
-        border: 1px solid black;
+        border: 1px solid white;
         display: flex;
         align-items: start;
+        backdrop-filter: blur(100px);
     }
 
     .button-input button:hover{
@@ -28,9 +29,11 @@
     }
 
     .bi-search{
-        margin-top: 2px;
+        margin-top: 4px;
         margin-left: 10px;
         font-size: 20px;
+        color: white;
+        filter: opacity(70%);
     }
 
     /* ----------temperatura---------------- */
@@ -44,16 +47,24 @@
         justify-content: center;
         align-items: start;
         margin-left: 30px;
+        color:white;
     }
 
     .temperatura h1{
-        font-size: 70px;
+        font-size: 90px;
         font-weight: normal;
     }
 
     .temperatura p{
         font-size: 14px;
         filter: opacity(70%);
+        font-size: 14px;
+    }
+
+    .temperatura p.cidade {
+        filter: none;
+        font-weight:bolder;
+        font-size: 16px;
     }
 
     /* ----------containers----------- */
@@ -66,10 +77,11 @@
     }
 
     body {
-        background: url('Sprint2-Ages/C:\Users\analu\OneDrive\Área de Trabalho\Sprint2-Ages\sol_com_nuvens.png.png');
+        background-image: url('sol_com_nuvens.png');
         background-size: cover;
     }
     .container-principal{
+        
         height: 200px;
         width: 78vw;
         display: flex;
@@ -82,18 +94,29 @@
     .container{
         height: 90px;
         width: 17vw;
+        border: solid;
+        border-width: 1px;
         border-radius: 20px;
-        border: 1px solid black;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        background-color: #484D50;
+        backdrop-filter: blur(100px);
+        background-color: transparent;
         color: white;
     }
 
     .container p{
-        font-size: 10px;
+        font-size: 12px;
+        padding: 10px    
+    }
+
+    .container p.temp_semana {
+        filter: opacity(70%);
+    }
+    .container p.dia_semana {
+        font-size: 15px;
+        font-weight: bolder;
     }
 
 }
