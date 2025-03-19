@@ -1,59 +1,177 @@
 @media screen and (max-width: 390px){
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
     *{
         margin: 0;
         padding: 0;
-        font: 1em sans-serif;
+        font-family: "Poppins", sans-serif;
     }
 
-    .button-input{
+    body{
+        background: url(images.jpeg);
+        width: 100vw;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+
+    body::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgb(0, 0, 0, 0.15);
+        backdrop-filter: blur(15px);
+    }
+
+    /* --------------------barra-de-pesquisa------------------- */
+
+    .barra-de-pesquisa{
         height: 80px;
         width: 100vw;
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 10px;
     }
 
-    .button-input button{
-        height: 34px;
-        width: 341px;
+    .barra-de-pesquisa input{
+        z-index: 1;
+        height: 47px;
+        width: 87vw;
         border-radius: 20px;
-        background-color: transparent;
-        border: 1px solid black;
-        display: flex;
-        align-items: start;
-    }
-
-    .button-input button:hover{
-        cursor: pointer;
+        border: 1px solid #6969AD;
+        padding-left: 12px;
+        background-color: #484C74;
+        color: white;
+        font-size: 16px;
+        font-weight: normal;
     }
 
     .bi-search{
-        margin-top: 2px;
-        margin-left: 10px;
+        position: absolute;
+        top: 25px;
+        left: 85vw;
+        z-index: 1;
+        color: white;
         font-size: 20px;
     }
 
     /* ----------temperatura---------------- */
 
-    .temperatura{
-        margin-top: 50px;
-        height: 150px;
-        width: 100vw;
+    .container1-temperatura{
+        margin-top: 15px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: start;
-        margin-left: 30px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100vw;
     }
 
-    .temperatura h1{
-        font-size: 70px;
-        font-weight: normal;
+    .container1-temperatura p{
+        font-size: 18px;
+        filter: opacity(90%);
+        z-index: 1;
     }
 
-    .temperatura p{
-        font-size: 14px;
-        filter: opacity(70%);
+    .container1-temperatura h1{
+        font-size: 23px;
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    .bi-geo-alt{
+        font-size: 30px;
+        z-index: 1;
+    }
+
+    .container-img{
+        display: flex;
+        flex-direction: row;    
+        align-items: center;
+        justify-content: space-around;
+        margin-top: 20px;
+        width: 100vw;
+        gap: 20px;
+        z-index: 1;
+    }
+    
+    .container-img img{
+        height: 150px;
+        width: 40vw;
+        z-index: 1;
+    }
+
+    .container-img p{
+        font-size: 22px;
+        width: 34vw;
+        z-index: 1;
+    }
+
+    .container-img span{
+        font-weight: bold;
+        font-size: 26px;
+        z-index: 1;
+    }
+
+    .container2-temperatura{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100vw;
+        z-index: 1;
+    }
+
+    .container-umidade{
+        width: 120px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1;
+    }
+
+    .container-umidade span{
+        font-size: 21px;
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    .container-umidade p{
+        font-size: 19px;
+        z-index: 1;
+    }
+
+    .bi-droplet{
+        font-size: 30px;
+        z-index: 1;
+    }
+
+    .container-vento{
+        width: 130px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1;
+    }
+
+    .container-vento span{
+        font-size: 21px;
+        font-weight: bold;
+        z-index: 1;
+    }    
+    
+    .container-vento p{
+        font-size: 19px;
+        z-index: 1;
+    }
+
+    .bi-wind{
+        font-size: 30px;
+        z-index: 1;
     }
 
     /* ----------containers----------- */
