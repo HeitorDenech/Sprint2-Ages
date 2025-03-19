@@ -9,16 +9,46 @@
 </head>
 <body>
 
-    <section class="button-input">
-        <button type="text"><i class="bi bi-search"></i></button>
+    <section class="barra-de-pesquisa">
+        <!-- <button type="text"><i class="bi bi-search"></i></button> -->
+         <input type="text" placeholder="Pesquisar a cidade" maxlength="30"> <i class="bi bi-search"></i>
     </section>
 
     <section class="temperatura">
-        <p class="cidade">Porto Alegre</p>
-        <h1>28°</h1>
-        <p><i class="bi bi-cloud-drizzle"></i> Tempestade 31°/ 20°</p>
-        <p><i class="bi bi-droplet-half"></i> Umidade do ar 66%</p>
-        <p><i class="bi bi-wind"></i> Vento 10km/h</p>
+
+        <div class="container1-temperatura">
+            <h1>
+                <i class="bi bi-geo-alt"></i> Porto Alegre 
+            </h1>
+            <p>
+                Ter, 18 mar
+            </p>
+        </div>
+
+        <div class="container-img">
+            <img src="clouds.svg" alt="">
+
+            <p><span>30°C</span> Ensolarado</p>
+        </div>
+
+        <div class="container2-temperatura">
+
+            <div class="container-umidade">
+                <i class="bi bi-droplet"></i> 
+                <p>
+                    Umidade <span>70%</span> 
+                </p>
+            </div>
+
+            <div class="container-vento">
+                <i class="bi bi-wind"></i>
+                <p>
+                   Vento <span>4.12M/s</span>
+                </p>
+            </div>
+
+        </div>
+
     </section>
 
     <section class="containers">
