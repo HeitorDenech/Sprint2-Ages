@@ -386,3 +386,96 @@
     }
 
 }
+
+
+
+@media screen and (min-width:1920px) {
+ 
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url(images.jpeg);
+        background-size: cover;
+        background-position: center;
+        backdrop-filter: blur(15px);
+        width: 100vw;
+        height: 100vh;
+    }
+
+    body::before{
+        background: url(tempestade.png);
+        background-size: cover;
+        background-position: center;
+        content: "";
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: rgb(0, 0, 0, 0.15);
+        backdrop-filter: blur(3px);
+    }
+
+    .container-clima{
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; 
+        flex-wrap: wrap;
+        height: 70vh;
+        width: 50vw;
+        border: 1px solid black;
+    }
+
+    /* -------tela-de-inicio-------- */
+    
+    .tela_de_inicio img{
+        height: 20vh;
+        width: 20vw;
+    }
+
+    /* --------barra_de_pesquisa--------- */
+
+    .barra-de-pesquisa{
+        height: 100px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .barra-de-pesquisa input{
+        z-index: 1;
+        height: 50px;
+        width: 80%;
+        border-radius: 20px;
+        border: transparent;
+        padding-left: 12px;
+        backdrop-filter: blur(100px);
+        background-color: transparent;
+        color: white;
+        font-size: 18px;
+        font-weight: normal;
+        background: rgba(0, 0, 0, 0.20);
+    }
+
+    .bi-search{
+        position: absolute;
+        top: 304px;
+        left: 68.5vw;
+        z-index: 1;
+        color: white;
+        font-size: 20px;
+        color: white;
+        filter: opacity(70%);
+    }
+
+    /* ----------chuva_e_neve--------- */
+
+    .chuva-container img{
+        height: 20px;
+        width: 25px;
+    }
+
+}
+

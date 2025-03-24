@@ -9,154 +9,157 @@
 </head>
 <body>
 
-    <section class="barra-de-pesquisa">
-        <!-- <button type="text"><i class="bi bi-search"></i></button> -->
-         <input id="cityInput" type="text" placeholder="Pesquisar a cidade" maxlength="30"> <i onclick="BtnClick()" id="btnSearch" class="bi bi-search"></i>
-    </section>
-
-    <!-- --------------------TELA_DE_INICIO------------------------ -->
-
-    <section class="tela_de_inicio">
-        <div class="container_inicio">
-            <img src="imagemInicio.png" alt="" srcset="">
-            <h1>Pesquise uma cidade</h1>
-            <p>Encontre as condições climáticas da cidade</p>
-        </div>
-    </section>
-
-     <!-- --------------------TELA_DE_INICIO------------------------ -->
-
-     <section class="display">
-        <section class="temperatura">
-
-            <div class="container1-temperatura">
-                <div class="text-container1-temperatura">
-    
-                    <i id="city" class="bi bi-geo-alt"></i> 
-                    <h1 id="city-text">
-                        
-                    </h1>
-                </div>
-                <p id="dia">
-                  
-                </p>
-            </div>
-    
-            <div class="container-img">
-                <div class="chuva_e_neve">
-    
-                    <img id="imgtempo" src="clouds.svg" alt="">
-                    <div id="neve-efeito" class="neve-container">
-                          <span style="--i:20"></span>
-                          <span style="--i:35"></span>
-                          <span style="--i:15"></span>
-                          <span style="--i:22"></span>
-                          <span style="--i:28"></span>
-                    </div>
-                    
-                    <div id="chuva-efeito" class="chuva-container">
-                        <span  style="--i:10">
-                            <img src="chuva-removebg-preview.png" alt="" srcset="">
-                        </span>
-                        <span  style="--i:15">
-                            <img src="chuva-removebg-preview.png" alt="" srcset="">
-                        </span>
-                        <span  style="--i:20">
-                            <img src="chuva-removebg-preview.png" alt="" srcset="">
-                        </span>
-                        <span  style="--i:25">
-                            <img src="chuva-removebg-preview.png" alt="" srcset="">
-                        </span>
-                        <span  style="--i:30">
-                            <img src="chuva-removebg-preview.png" alt="" srcset="">
-                        </span>
-                        <span  style="--i:30">
-                            <img src="chuva-removebg-preview.png" alt="" srcset="">
-                        </span>
-    
-                    </div>
-                </div>
-    
-           
-                <div class="temperatura-texto">
-                    <span id="temp"></span> 
-                    <p id="info">
-                  
-                    </p>
-                </div>
-            </div>
-    
-            <div class="container2-temperatura">
-    
-                <div class="container-umidade">
-                    <i class="bi bi-droplet"></i> 
-                    <p>
-                        Umidade <span id="umidade">%</span> 
-                    </p>
-                </div>
-    
-                <div class="container-vento">
-                    <i class="bi bi-wind"></i>
-                    <p>
-                       Vento <span id="wspeed">4.12M/s</span>
-                    </p>
-                </div>
-    
-            </div>
-    
+    <section class="container-clima">
+        <section class="barra-de-pesquisa">
+            <!-- <button type="text"><i class="bi bi-search"></i></button> -->
+             <input id="cityInput" type="text" placeholder="Pesquisar a cidade" maxlength="30"> <i onclick="BtnClick()" id="btnSearch" class="bi bi-search"></i>
         </section>
     
-        <section class="containers">
+        <!-- --------------------TELA_DE_INICIO------------------------ -->
     
-            <div class="container-principal">
-    
-                <div class="container">
-                    <p id="dia1" class="dia_semana"></p>
-                    <img id="img0" src="clouds.svg" alt="" srcset="">
-                    <!-- <p class="temp_semana">Máx/Min</p> -->
-                </div>
-    
-                <div class="container">
-                    <p id="dia2" class="dia_semana"></p>
-                    <img id="img1" src="clouds.svg" alt="" srcset="">
-                    <!-- <p class="temp_semana">Máx/Min</p> -->
-                </div>
-    
-                <div class="container">
-                    <p id="dia3" class="dia_semana"></p>
-                    <img id="img2" src="clouds.svg" alt="" srcset="">
-                    <!-- <p class="temp_semana">Máx/Min</p> -->
-                </div>
-    
-                <div class="container">
-                    <p id="dia4" class="dia_semana"></p>
-                    <img id="img3" src="clouds.svg" alt="" srcset="">
-                    <!-- <p class="temp_semana">Máx/Min</p> -->
-                </div>
-    
-                <div class="container">
-                    <p id="dia5" class="dia_semana"></p>
-                    <img id="img4" src="clouds.svg" alt="" srcset="">
-                    <!-- <p class="temp_semana">Máx/Min</p> -->
-                </div>
-    
-                <div class="container">
-                    <p id="dia6" class="dia_semana"></p>
-                    <img id="img5" src="clouds.svg" alt="" srcset="">
-                    <!-- <p class="temp_semana">Máx/Min</p> -->
-                </div>
-    
-                <!-- <div class="container">
-                    <p class="dia_semana">Dom</p>
-                    <img src="clouds.svg" alt="" srcset="">
-                </div> -->
-    
+        <section class="tela_de_inicio">
+            <div class="container_inicio">
+                <img src="imagemInicio.png" alt="" srcset="">
+                <h1>Pesquise uma cidade</h1>
+                <p>Encontre as condições climáticas da cidade</p>
             </div>
-    
         </section>
+    
+         <!-- --------------------TELA_DE_INICIO------------------------ -->
+    
+         <section class="display">
+            <section class="temperatura">
+    
+                <div class="container1-temperatura">
+                    <div class="text-container1-temperatura">
         
-     </section>
-
+                        <i id="city" class="bi bi-geo-alt"></i> 
+                        <h1 id="city-text">
+                            
+                        </h1>
+                    </div>
+                    <p id="dia">
+                      
+                    </p>
+                </div>
+        
+                <div class="container-img">
+                    <div class="chuva_e_neve">
+        
+                        <img id="imgtempo" src="clouds.svg" alt="">
+                        <div id="neve-efeito" class="neve-container">
+                              <span style="--i:20"></span>
+                              <span style="--i:35"></span>
+                              <span style="--i:15"></span>
+                              <span style="--i:22"></span>
+                              <span style="--i:28"></span>
+                        </div>
+                        
+                        <div id="chuva-efeito" class="chuva-container">
+                            <span  style="--i:10">
+                                <img src="chuva-removebg-preview.png" alt="" srcset="">
+                            </span>
+                            <span  style="--i:15">
+                                <img src="chuva-removebg-preview.png" alt="" srcset="">
+                            </span>
+                            <span  style="--i:20">
+                                <img src="chuva-removebg-preview.png" alt="" srcset="">
+                            </span>
+                            <span  style="--i:25">
+                                <img src="chuva-removebg-preview.png" alt="" srcset="">
+                            </span>
+                            <span  style="--i:30">
+                                <img src="chuva-removebg-preview.png" alt="" srcset="">
+                            </span>
+                            <span  style="--i:30">
+                                <img src="chuva-removebg-preview.png" alt="" srcset="">
+                            </span>
+        
+                        </div>
+                    </div>
+        
+               
+                    <div class="temperatura-texto">
+                        <span id="temp"></span> 
+                        <p id="info">
+                      
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="container2-temperatura">
+        
+                    <div class="container-umidade">
+                        <i class="bi bi-droplet"></i> 
+                        <p>
+                            Umidade <span id="umidade">%</span> 
+                        </p>
+                    </div>
+        
+                    <div class="container-vento">
+                        <i class="bi bi-wind"></i>
+                        <p>
+                           Vento <span id="wspeed">4.12M/s</span>
+                        </p>
+                    </div>
+        
+                </div>
+        
+            </section>
+        
+            <section class="containers">
+        
+                <div class="container-principal">
+        
+                    <div class="container">
+                        <p id="dia1" class="dia_semana"></p>
+                        <img id="img0" src="clouds.svg" alt="" srcset="">
+                        <!-- <p class="temp_semana">Máx/Min</p> -->
+                    </div>
+        
+                    <div class="container">
+                        <p id="dia2" class="dia_semana"></p>
+                        <img id="img1" src="clouds.svg" alt="" srcset="">
+                        <!-- <p class="temp_semana">Máx/Min</p> -->
+                    </div>
+        
+                    <div class="container">
+                        <p id="dia3" class="dia_semana"></p>
+                        <img id="img2" src="clouds.svg" alt="" srcset="">
+                        <!-- <p class="temp_semana">Máx/Min</p> -->
+                    </div>
+        
+                    <div class="container">
+                        <p id="dia4" class="dia_semana"></p>
+                        <img id="img3" src="clouds.svg" alt="" srcset="">
+                        <!-- <p class="temp_semana">Máx/Min</p> -->
+                    </div>
+        
+                    <div class="container">
+                        <p id="dia5" class="dia_semana"></p>
+                        <img id="img4" src="clouds.svg" alt="" srcset="">
+                        <!-- <p class="temp_semana">Máx/Min</p> -->
+                    </div>
+        
+                    <div class="container">
+                        <p id="dia6" class="dia_semana"></p>
+                        <img id="img5" src="clouds.svg" alt="" srcset="">
+                        <!-- <p class="temp_semana">Máx/Min</p> -->
+                    </div>
+        
+                    <!-- <div class="container">
+                        <p class="dia_semana">Dom</p>
+                        <img src="clouds.svg" alt="" srcset="">
+                    </div> -->
+        
+                </div>
+        
+            </section>
+            
+         </section>
+    
+    </section>
+    
   
     
     <script src="script.js"></script>

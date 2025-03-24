@@ -9,12 +9,16 @@ const storm   = 4;
 let first_time = 1;
 
 async function BtnClick() {
-    let data = await ApiGETData();
+    let data    = await ApiGETData();
     let humidity;
+    let rain;
+    let temp;
+    let clouds;
 
     if(data == null)
         return;
 
+    // se for a primeira vez que o usuario digita uma cidade, desabilite a tela inicial e habilite a tela de climas
     if(first_time) {
         let tela, display;
         first_time = 0;
@@ -27,7 +31,13 @@ async function BtnClick() {
             display[i].style.display = "flex";
     }
 
-    document.getElementById("temp").innerHTML = (data.main.temp - 273).toFixed(0) + "°C";
+    rain = (data.rain) ? data.rain["1h"] : null;
+    clouds = data.clouds.all;
+    temp = (data.main.temp - 273).toFixed(0);
+
+    console.log("Clouds: " + clouds);
+
+    document.getElementById("temp").innerHTML =  + temp + "°C";
     if(data.name.length >= 15)
         document.getElementById("city-text").style = "font-size: 20px;";
     else
@@ -39,7 +49,7 @@ async function BtnClick() {
 
     SetNextDayWeather();
 
-    if(data.main.temp - 273 <= 0){
+    if(temp <= 0){
         document.getElementById("imgtempo").src = "snow.svg";
         document.getElementById("info").innerHTML = "Nevando";
         document.getElementById("chuva-efeito").style = "display: none;";
@@ -48,37 +58,31 @@ async function BtnClick() {
         return;
     }
 
-    if(humidity < 60) {
-        if(data.clouds.all >= 60) {
+    if(rain == null) {
+        document.getElementById("chuva-efeito").style = "display: none;";
+        document.getElementById("neve-efeito").style = "display: none;";
+        if(clouds >= 5){
             document.getElementById("imgtempo").src = "clouds.svg";
             document.getElementById("info").innerHTML = "Nublado";
-            document.getElementById("neve-efeito").style = "display: none;";
-            document.getElementById("chuva-efeito").style = "display: none;";
             document.body.style.background = "url(nublado.png)";
             return;
         }
         document.getElementById("imgtempo").src = "clear.svg";
         document.getElementById("info").innerHTML = "Ensolarado";
-        document.getElementById("neve-efeito").style = "display: none;";
-        document.getElementById("chuva-efeito").style = "display: none;";
         document.body.style.background = "url(ensolarado.png)";
         return;
     }
 
-    if(humidity <= 80) {
-        //chuva fraca
-        document.getElementById("imgtempo").src = "nuvem_semchuva.png";
+    document.getElementById("imgtempo").src = "nuvem_semchuva.png";
+    document.getElemenParistById("chuva-efeito").style = "display: flex;";
+    document.getElementById("neve-efeito").style = "display: none;";
+
+    if(rain < 2.5){
         document.getElementById("info").innerHTML = "Chuva Fraca";
-        document.getElementById("neve-efeito").style = "display: none;";
-        document.getElementById("chuva-efeito").style = "display: flex;";
         document.body.style.background = "url(chuva.png)";
         return;
     }
 
-    // chuva forte
-    document.getElementById("imgtempo").src = "nuvem_semchuva.png";
-    document.getElementById("neve-efeito").style = "display: none;";
-    document.getElementById("chuva-efeito").style = "display: flex;";
     document.getElementById("info").innerHTML = "Chuva Forte";
     document.body.style.background = "url(tempestade.png)";
 }
@@ -131,9 +135,7 @@ window.onload = function() {
 }
 
 function setNextDayName(current_day_num) {
-    let i, j;
-
-    for(i = j = 1; i < 7; i++, j++) {
+    for(var i = 1, j = 1; i < 7; i++, j++) {
         if(current_day_num + j > 6)
             current_day_num = j = 0;
         document.getElementById(`dia${i}`).innerHTML = GetName(current_day_num + j);
@@ -181,41 +183,34 @@ function GetBackground(value) {
 
 async function SetNextDayWeather() {
     let data = await ApiGETForecast();
-    let i,j;
 
     if(data == null)
         return;
 
-    console.log(data);
-    for(i = 0; i < 6; i++){
-        setWeather(data, i, 0, `img${i}`);
-    }
+    for(var i = 0; i < 6; i++)
+        setWeather(data, i, `img${i}`);
 }
 
-function setWeather(data, pos, setImgTempo, ImgPos) {
-    let backgrnd = -1;
+function setWeather(data, pos, ImgPos) {
     let temp;
-    let humidity;
+    let rain;
     let clouds;
 
-    if(pos == -1){
-        temp = data.main.temp - 273;
-        humidity = data.main.humidity;
-        clouds   = data.clouds.all;
-    }
-    else{
-        temp = data.list[pos].main.temp - 273;
-        humidity = data.list[pos].main.humidity;
-        clouds = data.list[pos].clouds.all;
-    }
+    console.log(data);
 
+    temp   = data.list[pos].main.temp - 273;
+    clouds = data.list[pos].clouds.all;
+    rain   = data.list[pos].rain ? data.list[pos].rain["3h"] : null;
+
+    console.log(pos + "\n");
+    
     if(temp <= 0){
         document.getElementById(ImgPos).src = "snow.svg";
         return;
     }
 
-    if(humidity < 60) {
-        if(clouds >= 60) {
+    if(rain == null){
+        if(clouds >= 5){
             document.getElementById(ImgPos).src = "clouds.svg";
             return;
         }
@@ -223,13 +218,6 @@ function setWeather(data, pos, setImgTempo, ImgPos) {
         return;
     }
 
-    if(humidity <= 80) {
-        //chuva fraca
-        document.getElementById(ImgPos).src = "drizzle.svg";
-        return;
-    }
-
-    // chuva forte
     document.getElementById(ImgPos).src = "rain.svg";
 }
 
