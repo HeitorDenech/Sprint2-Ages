@@ -18,6 +18,8 @@ async function BtnClick() {
     if(data == null)
         return;
 
+    console.log(data);
+
     // se for a primeira vez que o usuario digita uma cidade, desabilite a tela inicial e habilite a tela de climas
     if(first_time) {
         let tela, display;
@@ -31,7 +33,7 @@ async function BtnClick() {
             display[i].style.display = "flex";
     }
 
-    rain = (data.rain) ? data.rain["1h"] : null;
+    rain = (data.rain) ? data.rain["3h"] : null;
     clouds = data.clouds.all;
     temp = (data.main.temp - 273).toFixed(0);
 
@@ -87,15 +89,15 @@ async function BtnClick() {
     document.body.style.background = "url(tempestade.png)";
 }
 
-async function ApiGETData() {
-    let cityName = document.getElementById("cityInput").value;
-    let data     = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`);
+ async function ApiGETData() {
+     let cityName = document.getElementById("cityInput").value;
+     let data     = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`);
 
-    if(!data.ok)
-        return null;
+     if(!data.ok)
+         return null;
 
-    return data.json();
-}
+     return data.json();
+ }
 
 async function ApiGETForecast() {
     let cityName = document.getElementById("cityInput").value;
@@ -187,6 +189,8 @@ async function SetNextDayWeather() {
     if(data == null)
         return;
 
+    console.log(data);
+
     for(var i = 0; i < 6; i++)
         setWeather(data, i, `img${i}`);
 }
@@ -196,13 +200,9 @@ function setWeather(data, pos, ImgPos) {
     let rain;
     let clouds;
 
-    console.log(data);
-
     temp   = data.list[pos].main.temp - 273;
     clouds = data.list[pos].clouds.all;
     rain   = data.list[pos].rain ? data.list[pos].rain["3h"] : null;
-
-    console.log(pos + "\n");
     
     if(temp <= 0){
         document.getElementById(ImgPos).src = "snow.svg";
