@@ -12,7 +12,7 @@
     <section class="container-clima">
         <section class="barra-de-pesquisa">
             <!-- <button type="text"><i class="bi bi-search"></i></button> -->
-             <input id="cityInput" type="text" placeholder="Pesquisar a cidade" maxlength="30"> <i onclick="BtnClick()" id="btnSearch" class="bi bi-search"></i>
+             <input onkeypress="KeyPress()" id="cityInput" type="text" placeholder="Pesquisar a cidade" maxlength="30"> <i onclick="BtnClick()" id="btnSearch" class="bi bi-search"></i>
         </section>
     
         <!-- --------------------TELA_DE_INICIO------------------------ -->
@@ -33,14 +33,14 @@
                 <div class="container1-temperatura">
                     <div class="text-container1-temperatura">
         
-                        <i id="city" class="bi bi-geo-alt"></i> 
+                        <a id="city" class="bi bi-geo-alt"></a> 
                         <h1 id="city-text">
                             
                         </h1>
                     </div>
-                    <p id="dia">
+                        <p id="dia">
                       
-                    </p>
+                        </p>
                 </div>
         
                 <div class="container-img">
@@ -112,7 +112,7 @@
                 <div class="container-principal">
         
                     <div class="container">
-                        <p id="dia1" class="dia_semana"></p>
+                        <p id="dia1" class="dia_semana"></p> 
                         <img id="img0" src="clouds.svg" alt="" srcset="">
                         <!-- <p class="temp_semana">Máx/Min</p> -->
                     </div>

@@ -13,7 +13,7 @@
         background: url(images.jpeg);
         background-size: cover;
         background-position: center;
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(1px);
         width: 100vw;
         height: 100vh;
     }
@@ -27,7 +27,7 @@
         width: 100vw;
         height: 100vh;
         background: rgb(0, 0, 0, 0.15);
-        backdrop-filter: blur(3px);
+        backdrop-filter: blur(1px);
     }
 
     /* --------------------barra-de-pesquisa------------------- */
@@ -81,9 +81,10 @@
     }
 
     .tela_de_inicio img{
-        height: 300px;
+        height: 285px;
         width: 64%;
-        border-bottom: 1px solid white;
+        margin-left:30px;
+        /* border-bottom: 1px solid white; */
         z-index: 1;
     }
 
@@ -137,17 +138,17 @@
 
     .text-container1-temperatura{
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         flex-direction: row;
         gap: 15px;
     }
 
-    .container1-temperatura h1{
-        font-size: 23px;
+    .container1-temperatura a{
+        font-size: 22px;
         font-weight: bold;
         z-index: 1;
-        margin-left: -10px;
+        /* margin-left: -10px; */
     }
 
     .bi-geo-alt{
@@ -240,7 +241,7 @@
     
     @keyframes chuva {
         0%{
-            top: -8vh;
+            top: -7vh;
         }
         100%{
             top: 0vh;
@@ -256,13 +257,13 @@
 
     .temperatura-texto p{
         font-size: 22px;
-        width: 36vw;
+        width: 40vw;
         z-index: 1;
     }
 
     .temperatura-texto span{
         font-weight: bold;
-        font-size: 26px;
+        font-size: 45px;
         z-index: 1;
     }
 

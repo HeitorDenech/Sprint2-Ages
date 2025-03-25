@@ -1,31 +1,38 @@
-const api_key = "cffe63faffc5e53133ff3b35c92b6a6e";
+const apiKey = "cffe63faffc5e53133ff3b35c92b6a6e";
+let   first_time = 1;
 
-const clear   = 0;
-const clouds  = 1;
-const rain    = 2;
-const snow    = 3;
-const storm   = 4;
-
-let first_time = 1;
+function KeyPress() {
+    let e = window.event;
+    if(e.keyCode != 13)
+        return;
+    BtnClick();
+}
 
 async function BtnClick() {
-    let data    = await ApiGETData();
+    let data     = await GetData();
+    let temp;
     let humidity;
     let rain;
-    let temp;
+    let wind;
+    let cityName;
     let clouds;
 
     if(data == null)
         return;
 
-    console.log(data);
+    cityName = data.city.name;
 
-    // se for a primeira vez que o usuario digita uma cidade, desabilite a tela inicial e habilite a tela de climas
+    if(cityName.length >= 13)
+        document.getElementById("city").style = "font-size: 22px";
+    else
+        document.getElementById("city").style = "font-size: 22px";
+
     if(first_time) {
         let tela, display;
         first_time = 0;
         tela    = document.getElementsByClassName("tela_de_inicio");
         display = document.getElementsByClassName("display");
+        document.body.style = " backdrop-filter: blur(1px)";
 
         for(var i = 0; i < tela.length; i++)
             tela[i].style.display = "none";
@@ -33,37 +40,42 @@ async function BtnClick() {
             display[i].style.display = "flex";
     }
 
-    rain = (data.rain) ? data.rain["3h"] : null;
-    clouds = data.clouds.all;
-    temp = (data.main.temp - 273).toFixed(0);
+    temp     = (data.list[0].main.temp - 273).toFixed(0);
+    wind     = (data.list[0].wind.speed);
+    humidity = (data.list[0].main.humidity);
+    rain     = (data.list[0].rain) ? data.list[0].rain["3h"] : null;
+    clouds   = (data.list[0].clouds.all);
 
-    console.log("Clouds: " + clouds);
+    console.log(wind + "M/s");
+    console.log(clouds);
 
-    document.getElementById("temp").innerHTML =  + temp + "°C";
-    if(data.name.length >= 15)
-        document.getElementById("city-text").style = "font-size: 20px;";
-    else
-        document.getElementById("city-text").style = "font-size: 23px;";
-    document.getElementById("city-text").innerHTML =  data.name;
-    document.getElementById("umidade").innerHTML =  (humidity = data.main.humidity) + '%';
-    document.getElementById("umidade").innerHTML =  data.main.humidity + '%';
-    document.getElementById("wspeed").innerHTML =  data.wind.speed + "M/s";
+    console.log(temp + " °C");
+    console.log(data);
 
-    SetNextDayWeather();
+    document.getElementById("wspeed").innerHTML  = wind + "M/s";
+    document.getElementById("umidade").innerHTML = humidity + "%";
+    document.getElementById("city").innerHTML    = data.city.name;
+    document.getElementById("temp").innerHTML.style = "font-size: 30px";
+    document.getElementById("temp").innerHTML    = temp + "°C";
 
+    SetNextDay(data);
+
+    // neve
     if(temp <= 0){
         document.getElementById("imgtempo").src = "snow.svg";
+        document.getElementById("chuva-efeito").style = "display: none";
         document.getElementById("info").innerHTML = "Nevando";
-        document.getElementById("chuva-efeito").style = "display: none;";
-        document.getElementById("neve-efeito").style = "display: flex;";
-        document.body.style.background = "url(neve.png)";
+        document.getElementById("neve-efeito").style  = "display: flex";
+        document.body.style.background  = "url(neve.png)";
         return;
     }
 
+    document.getElementById("neve-efeito").style = "display: none";
+    
+    // nublado e ensolarado
     if(rain == null) {
-        document.getElementById("chuva-efeito").style = "display: none;";
-        document.getElementById("neve-efeito").style = "display: none;";
-        if(clouds >= 5){
+        document.getElementById("chuva-efeito").style = "display: none";
+        if(clouds > 5) {
             document.getElementById("imgtempo").src = "clouds.svg";
             document.getElementById("info").innerHTML = "Nublado";
             document.body.style.background = "url(nublado.png)";
@@ -75,44 +87,70 @@ async function BtnClick() {
         return;
     }
 
-    document.getElementById("imgtempo").src = "nuvem_semchuva.png";
-    document.getElemenParistById("chuva-efeito").style = "display: flex;";
-    document.getElementById("neve-efeito").style = "display: none;";
+    document.getElementById("chuva-efeito").style = "display: flex";
 
+    //chuva fraca
     if(rain < 2.5){
+        document.getElementById("imgtempo").src = "nuvem_semchuva.png";
         document.getElementById("info").innerHTML = "Chuva Fraca";
         document.body.style.background = "url(chuva.png)";
         return;
     }
-
+    // chuva forte
+    document.getElementById("imgtempo").src = "nuvem_semchuva.png";
     document.getElementById("info").innerHTML = "Chuva Forte";
     document.body.style.background = "url(tempestade.png)";
 }
 
- async function ApiGETData() {
-     let cityName = document.getElementById("cityInput").value;
-     let data     = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`);
-
-     if(!data.ok)
-         return null;
-
-     return data.json();
- }
-
-async function ApiGETForecast() {
+async function GetData() {
     let cityName = document.getElementById("cityInput").value;
-    let forecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${api_key}`);
+    let url      = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
+    let data     = await fetch(url);
 
-    if(!forecast.ok)
+    if(!data.ok)
         return null;
 
-    return forecast.json();
+    return data.json();
+}
+
+async function SetNextDay(data) {
+    console.log(data);
+    for(var i = 0, j = 5; i < 6; i++, j += 5)
+        setWeather(data, j, `img${i}`);
+}
+
+function setWeather(data, pos, ImgPos) {
+    let temp;
+    let rain;
+    let clouds;
+
+    temp   = data.list[pos].main.temp - 273;
+    clouds = data.list[pos].clouds.all;
+    rain   = data.list[pos].rain ? data.list[pos].rain["3h"] : null;
+    
+    if(temp <= 0){
+        document.getElementById(ImgPos).src = "snow.svg";
+        return;
+    }
+
+    if(rain == null){
+        if(clouds >= 5){
+            document.getElementById(ImgPos).src = "clouds.svg";
+            return;
+        }
+        document.getElementById(ImgPos).src = "clear.svg";
+        return;
+    }
+
+    document.getElementById(ImgPos).src = "rain.svg";
 }
 
 window.onload = function() {
     const data = new Date();
     let   final_data = "";
     let   week_day   = data.getDay();
+
+    document.body.style = " backdrop-filter: blur(15px)";
 
     document.getElementById("dia").innerHTML = GetName(week_day);
 
@@ -127,6 +165,33 @@ window.onload = function() {
             break;
         case 2:
             document.getElementById("dia").innerHTML += "Mar";
+            break;
+        case 3:
+            document.getElementById("dia").innerHTML += "Abr";
+            break;
+        case 4:
+            document.getElementById("dia").innerHTML += "Mai";
+            breaks
+         case 5:
+            document.getElementById("dia").innerHTML += "Jun";
+            break;
+        case 6:
+            document.getElementById("dia").innerHTML += "Jul";
+            break;
+        case 7:
+            document.getElementById("dia").innerHTML += "Ago";
+            break;
+        case 8:
+            document.getElementById("dia").innerHTML += "Set";
+            break;
+        case 9:
+            document.getElementById("dia").innerHTML += "Out";
+            break;
+        case 10:
+            document.getElementById("dia").innerHTML += "Nov";
+            break;
+        case 11:
+            document.getElementById("dia").innerHTML += "Dez";
             break;
         default:
             alert(data.getMonth());
@@ -165,6 +230,7 @@ function GetName(day) {
     }
 }
 
+
 function GetBackground(value) {
     switch(value){
         case clear:
@@ -181,49 +247,4 @@ function GetBackground(value) {
             alert("invalid");
             return;
     }
-}
-
-async function SetNextDayWeather() {
-    let data = await ApiGETForecast();
-
-    if(data == null)
-        return;
-
-    console.log(data);
-
-    for(var i = 0; i < 6; i++)
-        setWeather(data, i, `img${i}`);
-}
-
-function setWeather(data, pos, ImgPos) {
-    let temp;
-    let rain;
-    let clouds;
-
-    temp   = data.list[pos].main.temp - 273;
-    clouds = data.list[pos].clouds.all;
-    rain   = data.list[pos].rain ? data.list[pos].rain["3h"] : null;
-    
-    if(temp <= 0){
-        document.getElementById(ImgPos).src = "snow.svg";
-        return;
-    }
-
-    if(rain == null){
-        if(clouds >= 5){
-            document.getElementById(ImgPos).src = "clouds.svg";
-            return;
-        }
-        document.getElementById(ImgPos).src = "clear.svg";
-        return;
-    }
-
-    document.getElementById(ImgPos).src = "rain.svg";
-}
-
-function SetBackGround(value, setbackg) {
-    if(value == -1 || setbackg == -1)
-        return;
-
-    document.body.style.background = `url(${GetBackground(value)});`
 }
